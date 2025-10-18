@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title> Сила Рода - 21-дневный курс-практикум</title>
+  <meta name="description" content="21 шаг к энергии и успеху через нейрографику, медитативные и письменные практики.
+Мягко, с опорой на традиции и силу Рода."/>
+
+  <style>
+    :root{
+      --cream:#F5EFE3;
+      --pearl:#F9F8F6;
+      --terra:#D67252;
+      --gold:#C78F49;
+      --wine:#7A2E2E;
+      --ink:#363636;
+      --deep:#162F37;
+      --olive:#3B4D1C;
+      --radius:16px;
+      --radius-lg:22px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0}
+    body{
+      background:var(--cream);
+      color:var(--ink);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,"Noto Sans",sans-serif;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; height:auto; display:block}
+    .container{width:min(100%, 960px); margin-inline:auto; padding-inline:16px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:1000;
+      backdrop-filter:saturate(140%) blur(6px);
+      background:color-mix(in oklab, var(--deep) 8%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--deep) 15%, transparent);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+    .brand{font-weight:800; letter-spacing:.06em; color:var(--wine); font-size:18px}
+    /* Burger */
+    .burger{
+      display:inline-flex; flex-direction:column; gap:4px; border:0; background:transparent; cursor:pointer;
+      padding:8px; border-radius:10px;
+    }
+    .burger span{width:22px; height:2px; background:var(--wine); transition:.2s}
+    .menu{display:none; flex-direction:column; gap:8px; padding:10px 0}
+    .menu a{
+      padding:12px; border-radius:10px; font-size:16px; background:var(--olive); color:#fff; text-align:center;
+    }
+    .menu.open{display:flex}
+
+    /* Hero */
+    .hero{padding:18px 0 8px}
+    .hero-card{
+      display:grid; grid-template-columns:1fr; gap:14px; background:#fff;
+      border-radius:var(--radius-lg); box-shadow:var(--shadow); overflow:hidden;
+    }
+    .hero-copy{padding:18px}
+    .eyebrow{
+      display:inline-block; padding:6px 10px; border:1px solid var(--terra); border-radius:999px;
+      font-size:12px; letter-spacing:.06em; background:#fff; margin-bottom:8px;
+    }
+    .title{
+      font-weight:900; line-height:1.05; letter-spacing:.02em; margin:0;
+      font-size: clamp(28px, 7vw, 54px); color:var(--wine);
+    }
+    .subtitle{margin:6px 0 12px; font-size:16px; font-style:italic; color:var(--olive)}
+    .description{margin:0 0 12px; font-size:15px}
+    .cta-row{display:flex; flex-direction:column; gap:10px}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      background:var(--wine); color:#fff; border:none; border-radius:14px; padding:14px 18px;
+      font-weight:700; font-size:16px; cursor:pointer; transition:transform .08s ease, filter .2s ease;
+      box-shadow:0 8px 20px color-mix(in oklab, var(--wine) 30%, transparent);
+    }
+    .cta:hover{filter:brightness(1.05)}
+    .cta:active{transform:translateY(1px)}
+
+    /* Badges — горизонтальный скролл на мобайле */
+    .badges{margin-top:12px; display:flex; gap:8px; overflow:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px}
+    .badges::-webkit-scrollbar{display:none}
+    .badge{white-space:nowrap; padding:8px 12px; border-radius:12px; background:var(--olive); color:#fff; font-size:13px; font-weight:600}
+
+    .hero-media{background:var(--pearl); display:flex; align-items:center; justify-content:center}
+    .hero-media img{width:100%; height:220px; object-fit:cover}
+
+    /* Ribbon */
+    .ribbon{margin-top:14px; background:var(--deep); color:#fff; border-radius:var(--radius); padding:12px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:space-between;}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border-radius:999px; border:1px solid color-mix(in oklab,#fff 30%, var(--deep)); font-size:13px}
+    .ribbon-brand{font-family:'Brush Script MT', cursive; font-size:22px; color:var(--terra); font-weight:600}
+
+    /* Sections */
+    .section{
+      background:#fff; border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); margin-top:20px;
+    }
+    .section h2{color:var(--wine); font-size:24px; margin:0 0 8px}
+    .section h3{color:var(--olive); margin:16px 0 8px; font-size:18px}
+    .section p, .section li{font-size:15px}
+
+    /* Tariffs */
+    .tariff{background:var(--pearl); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow); margin-top:14px}
+    .tariff h3{color:var(--terra); margin:0 0 8px; font-size:20px}
+
+    /* Author */
+    .author-block{display:flex; flex-direction:column; gap:14px; background:var(--pearl); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow)}
+    .author-photo img{max-width:140px; border-radius:var(--radius)}
+    .author-info{flex:1}
+
+    /* Footer */
+    .footer{margin-top:28px; background:var(--deep); color:#fff; padding:18px; text-align:center; border-radius:var(--radius) var(--radius) 0 0; font-size:14px}
+
+    /* Desktop tweaks */
+    @media (min-width: 768px){
+      .container{padding-inline:20px}
+      .burger{display:none}
+      .menu{display:flex; flex-direction:row; gap:12px; padding:0}
+      .menu a{padding:10px 14px; font-size:15px}
+      .hero{padding:32px 0 12px}
+      .hero-card{grid-template-columns:1.1fr .9fr; gap:20px}
+      .hero-copy{padding:28px}
+      .hero-media img{height:100%}
+      .cta-row{flex-direction:row; flex-wrap:wrap}
+      .badges{overflow:visible; flex-wrap:wrap}
+      .section{padding:34px; margin-top:32px}
+      .section h2{font-size:32px}
+      .tariff{padding:24px}
+      .author-block{flex-direction:row; align-items:flex-start}
+      .author-photo img{max-width:180px}
+    }
+
+    /* Large screens */
+    @media (min-width: 1100px){
+      .container{width:min(1200px, 92%)}
+      .title{font-size: clamp(36px, 6vw, 76px)}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+<div class="container nav">
+<div class="brand">курс-практикум</div>
+<nav aria-label="Навигация" class="menu">
+<a href="#about">О курсе</a>
+<a href="#program">Программа</a>
+<a href="#format">Формат</a>
+<a href="#price">Стоимость</a>
+<a href="#faq">Вопросы и ответы</a>
+</nav>
+</div>
+</header>
+<main class="hero">
+<div aria-live="polite" class="container" id="heroCard">
+<section class="hero-card">
+<div class="hero-copy">
+<span class="eyebrow" id="eyebrow">21-дневный курс-практикум</span>
+<h1 class="title" id="title">СИЛА РОДА</h1>
+<p class="subtitle">21 шаг к энергии и успеху</p>
+<p class="p description">Сила Рода - это 21-дневный практикум трансформации.<br/>Через нейрографику, медитативные и письменные практики, вы шаг за шагом освободитесь от родовых сценариев, обретёшь поддержку предков и активируешь ресурсные программы.<br/>Итог - внутренний баланс, сила и уверенность в своём пути.</p>
+<div style="display:flex; gap:10px; flex-wrap:wrap">
+<a class="cta" href="#price" id="chatLink" rel="noopener" target="_blank">Иду на курс</a>
+<a class="cta" href="https://t.me/quiz_key_to_success" id="quizLink" rel="noopener" target="_blank">Пройди вводный квиз</a>
+<a class="cta" href="https://t.me/sila_roda_sila_sebja" rel="noopener" target="_blank">Канал Сила Рода</a>
+<style>
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+
+  .badge {
+    border: none;
+    background: #3B4D1C;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+
+  .badge:hover {
+    background: #546B2C;
+  }
+
+  .badge:active {
+    transform: scale(0.97);
+  }
+</style>
+
+      <div aria-label="Ключевые темы" class="badges" id="badges">
+        <button class="badge">Сила предков</button>
+        <button class="badge">Освобождение от сценариев</button>
+        <button class="badge">Родовые ресурсы</button>
+        <button class="badge">Энергия отношений</button>
+        <button class="badge">Поток изобилия</button>
+        <button class="badge">Гармония и опора</button>
+      </div>
+<div style="flex:0 0 70%; max-width:580px; display:flex; justify-content:flex-end;">
+  <img src="hero.jpg" alt="Сила Рода"
+       style="width:95%; height:auto; border-radius:24px;
+              box-shadow:0 10px 28px rgba(0,0,0,0.2); object-fit:cover; margin-right:10px;">
+</div>
+</div>
+
+</section>
+
+    <div class="container ribbon" role="note" aria-label="Преимущества">
+      <div style="display:flex; gap:8px; flex-wrap:wrap">
+        <span class="chip">Уважение к прошлому – опора в настоящем</span>
+        <span class="chip">Медитации, нейрографика, дневник</span>
+        <span class="chip">Мягко, экологично, по шагам</span>
+      </div>
+
+      <div class="ribbon-brand">ilona.flow.art</div>
+    </div>
+  </main>
+
+  <!-- About -->
+  <section class="container section" id="about">
+    <h2>О курсе</h2>
+    <p><strong>«Сила Рода»</strong> – это 21 шаг к ясности и внутренней устойчивости.</p>
+    <p>Этот практикум - для тех, кто чувствует: пора остановиться, услышать себя и отпустить старые сценарии, чтобы жить в согласии с собой и силой своего Рода. По-новому, по-своему.</p>
+
+    <h3>Вы здесь, если:</h3>
+    <ul>
+      <li>устали от бесконечной суеты и чувства «жизни на автомате»</li>
+      <li>в вашей жизни повторяются сценарии, мешающие двигаться вперёд</li>
+      <li>отношения складываются по одному и тому же сценарию, и вы хотите понять почему</li>
+      <li>вопрос денег словно ходит по кругу: то приходят, то исчезают, а то и восве нет, вы чувствуете, что причина глубже</li>
+      <li>хотите почувствовать поддержку и найти внутреннюю опору</li>
+      <li>ищите путь к гармонии и своему настоящему Я</li>
+      <li>готовы мягко переписать свою родовую историю</li>
+    </ul>
+
+    <h3>Что внутри практикума:</h3>
+    <ul>
+      <li>21 шаг трансформации</li>
+      <li>10 рисовальных практик с помощью чудесного метода Нейрографика</li>
+      <li>6 медитативных практик</li>
+      <li>3 мини-ритуала</li>
+      <li>2 письменные практики</li>
+      <li>Дневник осознаний</li>
+      <li>Поддержка в своём ритме</li>
+    </ul>
+
+    <h3>Что тебя ждёт:</h3>
+    <ul>
+      <li>Осознание родовых сценариев и понимание, что именно повторяется</li>
+      <li>Освобождение от ограничений и внутренних блоков</li>
+      <li>Соединение с ресурсами Рода и ощущение его поддержки</li>
+      <li>Перепрошивка на успех и любовь</li>
+      <li>Гармония с собой и своей историей</li>
+      <li>Возвращение к своему настоящему Я</li>
+    </ul>
+  </section>
+
+  <!-- Program -->
+  <section class="container section" id="program">
+    <h2>Программа курса-практикума «Сила Рода»</h2>
+    <div class="program-list">
+      <p><strong>ШАГ 1 – Начало пути</strong><br>Формулируем цели, настраиваемся на процесс и открываем контакт с энергией своего Рода.</p>
+      <p><strong>ШАГ 2 – Поколение №1</strong><br>Укрепляем ощущение себя и своего присутствия, возвращаем связь с внутренним «я».</p>
+      <p><strong>ШАГ 3 – Поколение №2: Часть 1</strong><br>Освобождаемся от обид, укрепляем внутреннюю опору и чувство благодарности.</p>
+      <p><strong>ШАГ 4 – Поколение №2: Часть 2</strong><br>Исследуем родительские установки — замечаем, что поддерживает, а что ограничивает.</p>
+      <p><strong>ШАГ 5 – Поколение №3</strong><br>Возвращаем память и почтение бабушкам и дедушкам, осознаём их ценности и наследие.</p>
+      <p><strong>ШАГ 6 – Поколение №4: Часть 1</strong><br>Встречаемся с темой любви и материальных блоков, распознаём страхи и скрытые ожидания.</p>
+      <p><strong>ШАГ 7 – Поколение №4: Часть 2</strong><br>Работаем с денежными и ресурсными сценариями, открываем движение энергии изобилия.</p>
+      <p><strong>ШАГ 8 – Поколение №5</strong><br>Активируем волю и энергию действия, трансформируем подавленные родовые стратегии.</p>
+      <p><strong>ШАГ 9 – Поколение №6</strong><br>Устанавливаем связь с интуитивной и духовной памятью Рода, слушаем подсказки предков.</p>
+      <p><strong>ШАГ 10 – Поколение №7: Часть 1</strong><br>Исследуем глубинные родовые программы и кармические узоры, принимаем мудрость поколений.</p>
+      <p><strong>ШАГ 11 – Поколение №7: Часть 2</strong><br>Осмысливаем пройденный путь, закрепляем внутренние изменения и подготавливаем почву для нового.</p>
+      <p><strong>ШАГ 12 – Промежуточный итог</strong><br>Замечаем результаты, фиксируем инсайты и выбираем направления для дальнейшего роста.</p>
+      <p><strong>ШАГ 13 – Тень Рода: трансформация и сила</strong><br>Исследуем вытеснённые сценарии и скрытые силы Рода, превращая тень в источник ресурса.</p>
+      <p><strong>ШАГ 14 – Те, о ком молчали</strong><br>Возвращаем признание тем, кто был забыт или исключён, восстанавливаем целостность системы.</p>
+      <p><strong>ШАГ 15 – Родовые обеты: Часть 1</strong><br>Освобождаемся от старых клятв и обещаний, ограничивающих личную свободу и выбор.</p>
+      <p><strong>ШАГ 16 – Родовые обеты: Часть 2</strong><br>Закрываем прошлые обязательства, восстанавливаем лёгкость и свободное течение энергии.</p>
+      <p><strong>ШАГ 17 – Родовые деньги: Часть 1</strong><br>Исследуем денежные сценарии рода и связь с энергией благодарности и изобилия.</p>
+      <p><strong>ШАГ 18 – Родовые деньги: Часть 2</strong><br>Переписываем финансовую историю, закрепляем новое состояние доверия и потока.</p>
+      <p><strong>ШАГ 19 – Родовые модели отношений</strong><br>Анализируем сценарии любви, одиночества и принятия, осознаём их корни и смысл.</p>
+      <p><strong>ШАГ 20 – Благословение Рода</strong><br>Принимаем дары и силу предков, соединяем корни, опыт и собственные цели в одно целое.</p>
+      <p><strong>ШАГ 21 – Я живая история своего Рода</strong><br>Подводим итог, благодарим, закрепляем изменения и формируем намерение на новый жизненный этап.</p>
+    </div>
+  </section>
+
+  <!-- Format -->
+  <section class="container section" id="format">
+    <h2>Формат</h2>
+    <p>21 день – короткие практики, понятные шаги.</p>
+    <p>Видео и аудио-медитации в записи, рисование в видео-формате.</p>
+    <p>Сопровождение – чат поддержки в Telegram.</p>
+    <p>Темп – идёте в своём ритме, возвращаясь к материалам. Записи остаются с вами навсегда.</p>
+
+    <h3>Как всё устроено:</h3>
+    <p>Каждый шаг – это короткое видео, практика или медитация, и рефлексия. Вы двигаетесь в удобном темпе: возвращаетесь к нужным темам, делаете паузы. Всё проходит в записи, на платформе Telegram – просто, удобно, доступно.</p>
+    <p>Даже если вы никогда не рисовали нейрографику – всё получится. Вводное видео и пошаговые объяснения сделают процесс лёгким и понятным.</p>
+    <p>Запись курса – как личная сессия на расстоянии. Вы проходите уроки тогда, когда удобно. Энергия Рода активируется не по расписанию, а по вашей готовности.</p>
+    <p><strong>Запись рисунка длится около 60–90 минут.</strong> На работу с рисунком может уйти больше времени – вы можете останавливать запись, переслушивать и возвращаться к любому шагу, пока не завершите процесс. У каждого свой путь.</p>
+  </section>
+
+  <!-- Price -->
+  <section class="container section" id="price">
+    <h2>Стоимость</h2>
+
+    <div class="tariff">
+      <h3>Странник — 72 €</h3>
+      <p>Самостоятельный путь шаг за шагом в записи.</p>
+      <p><strong>Включает:</strong></p>
+      <ul>
+        <li>дневник осознаний</li>
+        <li>сборник «Истории, которые живут в нас»</li>
+      </ul>
+      <a class="cta" href="https://buy.stripe.com/7sYeVe6CB4OI44T2fn2Nq04" target="_blank" rel="noopener">Выбрать «Странник»</a>
+    </div>
+
+    <div class="tariff">
+      <h3>Проводник — 123 €</h3>
+      <p>Практикум в записи с моей обратной связью.</p>
+      <p><strong>Включает:</strong></p>
+      <ul>
+        <li>дневник осознаний</li>
+        <li>сборник «Истории, которые живут в нас»</li>
+        <li>живые эфиры с разбором вопросов</li>
+        <li>бонус-урок в конце курса по голосованию участников</li>
+      </ul>
+      <a class="cta" href="https://buy.stripe.com/cNi8wQd0Z80U0SH2fn2Nq05" target="_blank" rel="noopener">Выбрать «Проводник»</a>
+    </div>
+
+    <div class="tariff">
+      <h3>Мастер пути — 369 €</h3>
+      <p>Всё, что входит в «Странник» и «Проводник», плюс личное сопровождение.</p>
+      <p><strong>Также включает:</strong></p>
+      <ul>
+        <li>бонус-урок в конце курса по голосованию участников</li>
+      </ul>
+      <a class="cta" href="https://buy.stripe.com/5kQ28s4ut94YcBpdY52Nq08" target="_blank" rel="noopener">Выбрать «Мастер пути»</a>
+    </div>
+
+    <div style="text-align:center; margin-top:18px;">
+      <a class="cta" href="https://t.me/IP_ilona_flow" target="_blank" rel="noopener">Остались вопросы, задайте их мне</a>
+    </div>
+  </section>
+
+  <!-- FAQ + Author + Reviews -->
+  <section class="container section" id="faq">
+    <h2>Вопросы и ответы</h2>
+
+    <h3>Об авторе курса</h3>
+    <div class="author-block">
+      <div class="author-photo">
+        <img src="foto.jpg" alt="foto.jpg">
+      </div>
+      <div class="author-info">
+        <p>Автор курса – специалист, соединяющий научный подход и глубинную работу с родовой системой.</p>
+        <ul>
+          <li>Инженер-химик по профессии</li>
+          <li>Специалист нейрографики</li>
+          <li>Тетапрактик</li>
+        </ul>
+        <p>Основа курса – личный опыт преодоления выгорания через работу с Родом, медитации и арт-практики.</p>
+      </div>
+    </div>
+
+    <h3>Частые вопросы</h3>
+    <p><strong>– Я не умею рисовать. Смогу ли я пройти практикум?</strong><br>→ Да. Нейрографика – это про чувства, а не про технику. Всё объясняется пошагово. Всё, что нужно: маркер, альбом, карандаши и/или текстовыделители.</p>
+    <p><strong>– У меня мало времени. Что если я не смогу заниматься каждый день?</strong><br>→ Двигайтесь в своём ритме. Это не марафон, а путь к себе. Каждое занятие – это не день, а шаг.</p>
+    <p><strong>– А если я пропущу день?</strong><br>→ Всё сохранится. Вы можете вернуться в любой момент.</p>
+    <p><strong>– Нужно ли делиться рисунками?</strong><br>→ Не обязательно. Это ваш личный процесс. Но если захотите – можете поделиться, и я дам супервизию.</p>
+
+    <h3>Отзывы участниц</h3>
+    <blockquote style="background:var(--pearl); border-left:4px solid var(--terra); padding:14px; border-radius:var(--radius); margin:12px 0">
+      <p><strong>Анна Л.</strong></p>
+      <p>«До курса я жила в постоянных качелях – то радость, то слёзы, то злость. Никакого равновесия не было. С “Силой Рода” пришло чувство устойчивости и поддержки, будто за спиной всегда есть опора. Особенно помогли медитации – они раскрыли глубоко личные переживания. Сейчас я чувствую спокойствие и силу, и это дорогого стоит».</p>
+    </blockquote>
+    <blockquote style="background:var(--pearl); border-left:4px solid var(--terra); padding:14px; border-radius:var(--radius); margin:12px 0">
+      <p><strong>Дана</strong></p>
+      <p>«Курс оказался системным и практичным. Каждое задание было шагом в глубину себя. Было непросто, но именно это дало результат – осознанность и ясность. Я увидела корни негативных реакций и смогла их переписать. Ценна поддержка и разъяснения – это действительно меняет состояние».</p>
+    </blockquote>
+    <blockquote style="background:var(--pearl); border-left:4px solid var(--terra); padding:14px; border-radius:var(--radius); margin:12px 0">
+      <p><strong>Марина</strong></p>
+      <p>«Шла из любопытства, а получила больше. Это путешествие – местами сложное, но интересное. С каждым шагом приходила сила и энергия. Медитации и рисунки стали инструментами радости. Сейчас больше лёгкости, уверенности и желания действовать».</p>
+    </blockquote>
+
+    <h3>Действуй</h3>
+    <p>Возможно, именно вы скажете:<br><em>«Стоп. Я выбираю свободу, любовь и силу»</em>.</p>
+    <div style="text-align:center; margin-top:14px;">
+      <a class="cta" href="#price">Присоединиться к курсу</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© «Сила Рода» – курс-практикум, где традиции становятся силой пути.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Burger toggle
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('topmenu');
+    burger.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Smooth anchor scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){
+          e.preventDefault();
+          document.querySelector(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+          menu.classList.remove('open');
+          burger.setAttribute('aria-expanded','false');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
